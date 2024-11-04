@@ -953,11 +953,13 @@ button {
   font-size: 41px;
   font-weight: 700;
   text-align: center;
-  color: #036;
+  color: #000;
 }
 
 .success-msg {
-  color: #65a30d;
+  color: #000;
+  font-size: 19px;
+  font-weight: bold;
 }
 
 @media (min-width: 640px) {
