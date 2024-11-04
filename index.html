@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="upgrade-insecure-requests"
+    />
+
+    <!--jquery if not already available -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.min.js"
+      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+      crossorigin="anonymous"
+    ></script>
+    <!--
+<script src="assets/js/events.js?id=672454288"></script>
+    <script src="assets/js/login.js?id=1101612824"></script>
+-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Final Expense</title>
+    <meta
+      name="description"
+      content="Just Announced For Province 1 Residents: Get Up To $40,000 Cash To Cover Burial Expenses And Unpaid Bills With New Benefit Program"
+    />
+    <link href="assets/css/style.css" rel="stylesheet" media="all" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/images/favicon-32x32.png"
+    />
+    <!-- <script>
+       $(function() {
+		$.ajax({
+    			url: "https://api.ipapi.com/api/check/?access_key=a0fb034650b925339c887b37f2df1267",
+    			success: function(data) {
+				const zip_code=data.zip;
+				const region_name=data.region_name;
+				document.getElementById('region').innerHTML = region_name;
+				//alert(zip_code);
+    			}
+    		});
+	})
+
+
+                </script> -->
+    <style>
+      .typing-animation {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .typing-dot {
+        width: 8px;
+        height: 8px;
+        background-color: #a7a7a7;
+        border-radius: 50%;
+        margin-right: 4px;
+        animation: typing 1s infinite;
+      }
+
+      @keyframes typing {
+        0% {
+          opacity: 0.3;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.05);
+        }
+        100% {
+          opacity: 0.3;
+          transform: scale(1);
+        }
+      }
+    </style>
+    <style>
+      /* cyrillic-ext */
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmSU5fCRc4EsA.woff2)
+          format("woff2");
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF,
+          U+A640-A69F, U+FE2E-FE2F;
+      }
+      /* cyrillic */
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmSU5fABc4EsA.woff2)
+          format("woff2");
+        unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      /* greek-ext */
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmSU5fCBc4EsA.woff2)
+          format("woff2");
+        unicode-range: U+1F00-1FFF;
+      }
+      /* greek */
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmSU5fBxc4EsA.woff2)
+          format("woff2");
+        unicode-range: U+0370-03FF;
+      }
+      /* vietnamese */
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmSU5fCxc4EsA.woff2)
+          format("woff2");
+        unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169,
+          U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+      }
+      /* latin-ext */
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmSU5fChc4EsA.woff2)
+          format("woff2");
+        unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+          U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      /* latin */
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmSU5fBBc4.woff2)
+          format("woff2");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+          U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+          U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      /* cyrillic-ext */
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/roboto/v20/KFOmCnqEu92Fr1Mu72xKOzY.woff2)
+          format("woff2");
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF,
+          U+A640-A69F, U+FE2E-FE2F;
+      }
+      /* cyrillic */
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/roboto/v20/KFOmCnqEu92Fr1Mu5mxKOzY.woff2)
+          format("woff2");
+        unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      /* greek-ext */
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/roboto/v20/KFOmCnqEu92Fr1Mu7mxKOzY.woff2)
+          format("woff2");
+        unicode-range: U+1F00-1FFF;
+      }
+      /* greek */
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/roboto/v20/KFOmCnqEu92Fr1Mu4WxKOzY.woff2)
+          format("woff2");
+        unicode-range: U+0370-03FF;
+      }
+      /* vietnamese */
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/roboto/v20/KFOmCnqEu92Fr1Mu7WxKOzY.woff2)
+          format("woff2");
+        unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169,
+          U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+      }
+      /* latin-ext */
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/roboto/v20/KFOmCnqEu92Fr1Mu7GxKOzY.woff2)
+          format("woff2");
+        unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+          U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      /* latin */
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/roboto/v20/KFOmCnqEu92Fr1Mu4mxK.woff2)
+          format("woff2");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+          U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+          U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      /* cyrillic-ext */
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmEU9fCRc4EsA.woff2)
+          format("woff2");
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF,
+          U+A640-A69F, U+FE2E-FE2F;
+      }
+      /* cyrillic */
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmEU9fABc4EsA.woff2)
+          format("woff2");
+        unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      /* greek-ext */
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmEU9fCBc4EsA.woff2)
+          format("woff2");
+        unicode-range: U+1F00-1FFF;
+      }
+      /* greek */
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmEU9fBxc4EsA.woff2)
+          format("woff2");
+        unicode-range: U+0370-03FF;
+      }
+      /* vietnamese */
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmEU9fCxc4EsA.woff2)
+          format("woff2");
+        unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169,
+          U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+      }
+      /* latin-ext */
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmEU9fChc4EsA.woff2)
+          format("woff2");
+        unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+          U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      /* latin */
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmEU9fBBc4.woff2)
+          format("woff2");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+          U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+          U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      /* cyrillic-ext */
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmWUlfCRc4EsA.woff2)
+          format("woff2");
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF,
+          U+A640-A69F, U+FE2E-FE2F;
+      }
+      /* cyrillic */
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmWUlfABc4EsA.woff2)
+          format("woff2");
+        unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      /* greek-ext */
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmWUlfCBc4EsA.woff2)
+          format("woff2");
+        unicode-range: U+1F00-1FFF;
+      }
+      /* greek */
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmWUlfBxc4EsA.woff2)
+          format("woff2");
+        unicode-range: U+0370-03FF;
+      }
+      /* vietnamese */
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmWUlfCxc4EsA.woff2)
+          format("woff2");
+        unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169,
+          U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+      }
+      /* latin-ext */
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmWUlfChc4EsA.woff2)
+          format("woff2");
+        unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+          U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      /* latin */
+      @font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmWUlfBBc4.woff2)
+          format("woff2");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+          U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+          U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+    </style>
+    <style>
+      .ucbzx-button-wrapper {
+        position: absolute !important;
+        z-index: 1000 !important;
+        top: 0 !important;
+        right: 0 !important;
+      }
+
+      .ucbzx-button {
+        display: block;
+        border: none !important;
+        /* outline: none !important; */
+        background: #3c3c54 !important;
+        padding: 0 !important;
+        border-radius: 5px;
+        width: 36px !important;
+        height: 36px !important;
+      }
+
+      .ucbzx-button:active {
+        border: none !important;
+      }
+
+      .ucbzx-button:disabled {
+        cursor: default !important;
+      }
+
+      .ucbzx-download-img {
+        display: block !important;
+        width: 36px !important;
+        height: 36px !important;
+        cursor: pointer !important;
+        margin: 0 !important;
+      }
+
+      .ucbzx-hide {
+        display: none !important;
+      }
+
+      .ucbzx-loader {
+        display: block;
+        box-sizing: content-box !important;
+        width: 30px !important;
+        height: 30px !important;
+        padding: 3px !important;
+        animation: rotate 1s linear infinite;
+        margin: 0 !important;
+      }
+
+      /*
+    RESOLUTIONS CHOICE
+*/
+
+      .ucbzx-resolutions-list {
+        position: absolute !important;
+        top: 36px !important;
+        right: 0 !important;
+        background: #3c3c54 !important;
+        color: #dbdbdb !important;
+        font-family: "Roboto", sans-serif !important;
+        font-size: 14px !important;
+        list-style: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      .ucbzx-resolutions-list li {
+        margin: 4px !important;
+        padding: 0 !important;
+        font-weight: bold !important;
+        white-space: nowrap !important;
+        width: 130px !important;
+        height: 30px !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+      }
+
+      .ucbzx-list-item-tickbox {
+        width: 20px !important;
+        height: 20px !important;
+        background: rgba(255, 255, 255, 0.219) !important;
+        /* border-radius: 5px !important; */
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        /* font-size: 17px !important; */
+        /* border: 1px solid rgba(255, 255, 255, 0.835) !important; */
+        cursor: pointer !important;
+        margin-left: 4px !important;
+      }
+
+      .ucbzx-resolutions-list > li::before {
+        display: none;
+      }
+
+      .ucbzx-list-item-tickbox:not(.ucbzx-list-item-tickbox-checked):hover {
+        background: rgba(255, 255, 255, 0.37) !important;
+      }
+
+      .ucbzx-list-item-tickbox.ucbzx-list-item-tickbox-checked {
+        cursor: default !important;
+      }
+
+      .ucbzx-list-item-tickbox-checked::after {
+        content: "\2713" !important;
+        color: white !important;
+      }
+
+      .ucbzx-list-item-text {
+        /* border-radius: 5px !important; */
+        flex-grow: 1 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        cursor: pointer !important;
+        height: 100% !important;
+        margin-left: 10px !important;
+      }
+
+      .ucbzx-list-item-text:hover {
+        background: rgba(255, 255, 255, 0.37) !important;
+        color: white !important;
+      }
+
+      /* account for the fact that we got rid of the tickbox there */
+      .ucbzx-resolutions-list li[data-type="captions"] .ucbzx-list-item-text {
+        margin-left: 34px !important;
+        font-style: italic;
+      }
+
+      /*
+    MISC
+*/
+
+      .ucbzx-arrow-container {
+        background: none !important;
+        position: absolute !important;
+        top: 36px !important;
+        left: 0 !important;
+        width: 0 !important;
+        height: 0 !important;
+        border-left: 18px solid transparent !important;
+        border-right: 18px solid transparent !important;
+        border-top: 18px solid #3c3c54 !important;
+        /* border-bottom: none !important; */
+        cursor: pointer !important;
+      }
+
+      .ucbzx-arrow-container::after {
+        position: absolute !important;
+        top: -18px !important;
+        left: -4px !important;
+        content: "" !important;
+        border: 1px solid #dbdbdb !important;
+        border-width: 0 3px 3px 0 !important;
+        display: inline-block !important;
+        padding: 3px !important;
+        transform: rotate(45deg);
+      }
+
+      .ucbzx-button:focus,
+      .ucbzx-arrow-container:focus,
+      .ucbzx-resolutions-list:focus,
+      .ucbzx-list-item-tickbox:focus,
+      .ucbzx-list-item-text:focus {
+        outline: 1px solid white !important;
+      }
+
+      @keyframes rotate {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /*
+    RESET STYLES
+*/
+      .ucbzx-button-wrapper button {
+        border: none;
+        margin: 0;
+        padding: 0;
+        width: auto;
+        overflow: visible;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        outline: none;
+        line-height: normal;
+        -webkit-font-smoothing: inherit;
+        -moz-osx-font-smoothing: inherit;
+        -webkit-appearance: none;
+      }
+
+      .ucbzx-button-wrapper li,
+      .ucbzx-button-wrapper li * {
+        margin: 0;
+        font: inherit;
+        font-style: inherit;
+        font-size: inherit;
+      }
+    </style>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      (function () {
+        var scriptElement = document.createElement("script");
+        scriptElement.type = "text/javascript";
+        scriptElement.async = true;
+        scriptElement.defer = true;
+        scriptElement.src =
+          document.location.protocol +
+          "//dist.routingapi.com/jsapi/v1/retreaver.min.js";
+        scriptElement.onload = scriptElement.onreadystatechange = function () {
+          Retreaver.configure({
+            host: "api.routingapi.com",
+            prefix: document.location.protocol == "https:" ? "https" : "http",
+          });
+
+          var campaign = new Retreaver.Campaign({
+            campaign_key: "3616ae6a8b1517936b02a4167c5a4d1d",
+          });
+
+          function getSkroClickIdFromCookies() {
+            const skroClickId = document.cookie
+              .split(";")
+              .map((x) => x.trim())
+              .filter((x) => x.startsWith("skro-click-id"))[0];
+            return skroClickId ? skroClickId.split("=")[1] : "";
+          }
+          msg4;
+
+          console.log("Skro Click ID: " + getSkroClickIdFromCookies());
+
+          campaign.request_number(function (number) {
+            var link =
+              '<a href="tel:' +
+              number.get("number") +
+              '" class="chat-button text-white font-bold bg-blue-500 rounded-full py-3 px-8 ttc-button fephonecallclick external-dni nv-btn api-btn" onclick="clickToCall()"><i class="bi bi-telephone flex-shrink-0"></i>' +
+              number.get("formatted_number") +
+              "</a>";
+            document.getElementById("phone-number").innerHTML = link;
+
+            $.getJSON(
+              "https://api.ipapi.com/api/check?access_key=a0fb034650b925339c887b37f2df1267",
+              function (data) {
+                console.log("zip: " + data.zip);
+
+                //$.getJSON('https://ipinfo.io/json', function(data){
+                //console.log("zip: " + data.postal);
+
+                number.replace_tags({
+                  skclid:
+                    window.skclid !== undefined
+                      ? window.skclid
+                      : getSkroClickIdFromCookies(),
+                  caller_zip: data.zip,
+                  publisher_id: "002",
+                });
+              }
+            );
+
+            //console.log("Skro Click ID test: " + getSkroClickIdFromCookies());
+          });
+        };
+        (
+          document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0]
+        ).appendChild(scriptElement);
+      })();
+    </script>
+
+    <a href="#" style="display: none" id="rtRef"></a>
+    <input id="hdnApprovalStatus" type="hidden" />
+    <main class="min-h-screen">
+      <div class="max-w-4xl mx-auto bg-white text-center text-gray-600">
+        <div class="p-4">
+          <h2 class="main-heading">
+            Drivers Are Cashing In Huge on Insurance Discounts with This New
+            Program—See If You Qualify Today!
+          </h2>
+        </div>
+        <div class="w-full md:col-span-1 text-center block">
+          <div class="text-sm flex items-center justify-center">
+            <span class="relative flex h-4 w-4 inline-flex mr-2">
+              <span
+                class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-green-500"
+              ></span>
+              <span
+                class="relative inline-flex rounded-full h-4 w-4 bg-green-500"
+              ></span>
+            </span>
+            Nancy is Online.
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-md mx-auto bg-white">
+        <div class="p-4">
+          <div class="space-y-4">
+            <div class="chat-container pb-2">
+              <!-- Agent message -->
+              <div id="agentBlock1" class="flex items-end w-5/6">
+                <div class="flex-shrink-0">
+                  <img
+                    class="w-8 h-8 rounded-full"
+                    src="assets/images/agent.png"
+                    alt="Sender Avatar"
+                  />
+                </div>
+                <div class="ml-3 agent-chat w-full">
+                  <div
+                    id="msg1"
+                    class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-full hidden"
+                  >
+                    <p class="text-md text-gray-800">Hi 👋</p>
+                  </div>
+                  <div
+                    id="msg2"
+                    class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-full hidden"
+                  >
+                    <p class="text-md text-gray-800">
+                      I'm Nancy from Smart Final Expense.
+                    </p>
+                  </div>
+                  <div
+                    id="msg3"
+                    class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-full hidden"
+                  >
+                    <p class="text-md text-gray-800">
+                      Want to find out if you qualify for a policy starting at
+                      just $41 a month? Ty! 😃
+                    </p>
+                  </div>
+                  <div
+                    id="msg4"
+                    class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-full hidden"
+                  >
+                    <div class="">
+                      <button
+                        class="api-btn chat-button text-white font-bold bg-sky-blue rounded-lg py-3 px-12 startquiz"
+                        type="button"
+                        data-form-step="1"
+                        data-form-value="Yes"
+                        data-answer="yes"
+                      >
+                        Yes
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- US Citizenship Question Block -->
+              <div
+                id="agentBlockCitizenship"
+                class="flex items-end w-5/6 hidden pt-4"
+              >
+                <div class="flex-shrink-0">
+                  <img
+                    class="w-8 h-8 rounded-full"
+                    src="assets/images/agent.png"
+                    alt="Sender Avatar"
+                  />
+                </div>
+                <div class="ml-3 agent-chat w-full">
+                  <div
+                    id="msg6"
+                    class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-full hidden"
+                  >
+                    <p class="text-md text-gray-800">
+                      Okay, let me ask you a couple questions.
+                    </p>
+                  </div>
+                  <div
+                    id="msgCitizenship"
+                    class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-full hidden"
+                  >
+                    <p class="text-md text-gray-800">Are you a US citizen?</p>
+                  </div>
+                  <div
+                    id="citizenshipButtons"
+                    class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-full hidden"
+                  >
+                    <button
+                      class="api-btn chat-button text-white font-bold bg-sky-blue rounded-lg py-3 px-8"
+                      type="button"
+                      data-form-step="citizenship"
+                      data-form-value="Yes"
+                      data-answer="yes"
+                    >
+                      Yes
+                    </button>
+                    <button
+                      class="api-btn chat-button text-white font-bold bg-sky-blue rounded-lg py-3 px-8"
+                      type="button"
+                      data-form-step="citizenship"
+                      data-form-value="No"
+                      data-answer="no"
+                    >
+                      No
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- User response for US Citizenship -->
+              <div
+                id="userBlockCitizenship"
+                class="flex items-start justify-end hidden"
+              >
+                <div class="mr-3 receiver-chat">
+                  <div
+                    class="bg-blue-500 text-white p-3 rounded-lg shadow-xs mt-2 inline-block"
+                  >
+                    <p id="msgUserCitizenshipYes" class="text-md hidden">Yes</p>
+                    <p id="msgUserCitizenshipNo" class="text-md hidden">No</p>
+                  </div>
+                </div>
+                <div class="flex-shrink-0">
+                  <img
+                    class="w-8 h-8 rounded-full"
+                    src="assets/images/profile.png"
+                    alt="Receiver Avatar"
+                  />
+                </div>
+              </div>
+
+              <!-- Zip Code Question Block -->
+              <div
+                id="agentBlockZipCode"
+                class="flex items-end w-5/6 hidden pt-4"
+              >
+                <div class="flex-shrink-0">
+                  <img
+                    class="w-8 h-8 rounded-full"
+                    src="assets/images/agent.png"
+                    alt="Sender Avatar"
+                  />
+                </div>
+                <div class="ml-3 agent-chat w-full">
+                  <div
+                    id="msgZipCode"
+                    class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-full hidden"
+                  >
+                    <p class="text-md text-gray-800">Enter ZIP Code</p>
+                  </div>
+                  <div
+                    id="zipCodeInputContainer"
+                    class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-full hidden"
+                  >
+                    <input
+                      id="zipCodeInput"
+                      type="text"
+                      class="bg-white border rounded-lg px-4 py-2 text-md"
+                      maxlength="5"
+                      pattern="\d*"
+                      placeholder="Enter 5-digit zip code"
+                      data-form-step="zipCode"
+                    />
+                    <button
+                      class="api-btn chat-button text-white font-bold bg-sky-blue rounded-lg py-2 px-4"
+                      type="button"
+                      id="zipCodeSubmit"
+                      data-form-step="zipCode"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- User response for Zip Code -->
+              <div
+                id="userBlockZipCode"
+                class="flex items-start justify-end hidden"
+              >
+                <div class="mr-3 receiver-chat">
+                  <div
+                    class="bg-blue-500 text-white p-3 rounded-lg shadow-xs mt-2 inline-block"
+                  >
+                    <p id="msgUserZipCode" class="text-md hidden"></p>
+                  </div>
+                </div>
+                <div class="flex-shrink-0">
+                  <img
+                    class="w-8 h-8 rounded-full"
+                    src="assets/images/profile.png"
+                    alt="Receiver Avatar"
+                  />
+                </div>
+              </div>
+
+              <!-- Age Question Block -->
+              <div id="agentBlockage" class="flex items-end w-5/6 hidden pt-4">
+                <div class="flex-shrink-0">
+                  <img
+                    class="w-8 h-8 rounded-full"
+                    src="assets/images/agent.png"
+                    alt="Sender Avatar"
+                  />
+                </div>
+                <div class="ml-3 agent-chat w-full">
+                  <div
+                    id="msgage"
+                    class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-full hidden"
+                  >
+                    <p class="text-md text-gray-800">Enter Your Age</p>
+                  </div>
+                  <div
+                    id="ageInputContainer"
+                    class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-full hidden"
+                  >
+                    <input
+                      id="ageInput"
+                      type="text"
+                      class="bg-white border rounded-lg px-4 py-2 text-md"
+                      maxlength="2"
+                      pattern="\d*"
+                      placeholder="Enter 2-Digit Age Like: 27"
+                      data-form-step="age"
+                    />
+                    <button
+                      class="api-btn chat-button text-white font-bold bg-sky-blue rounded-lg py-2 px-4"
+                      type="button"
+                      id="ageSubmit"
+                      data-form-step="age"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- User response for Age -->
+              <div
+                id="userBlockage"
+                class="flex items-start justify-end hidden"
+              >
+                <div class="mr-3 receiver-chat">
+                  <div
+                    class="bg-blue-500 text-white p-3 rounded-lg shadow-xs mt-2 inline-block"
+                  >
+                    <p id="msgUserage" class="text-md hidden"></p>
+                  </div>
+                </div>
+                <div class="flex-shrink-0">
+                  <img
+                    class="w-8 h-8 rounded-full"
+                    src="assets/images/profile.png"
+                    alt="Receiver Avatar"
+                  />
+                </div>
+              </div>
+
+              <!----------------------------------------------------------------------------------------------------------------->
+
+              <!-- Agent message -->
+              <div id="agentBlock3" class="flex items-end w-5/6 hidden pt-4">
+                <div class="flex-shrink-0">
+                  <img
+                    class="w-8 h-8 rounded-full"
+                    src="assets/images/agent.png"
+                    alt="Sender Avatar"
+                  />
+                </div>
+
+                <div class="ml-3 agent-chat w-full">
+                  <div
+                    id="msg10"
+                    class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-full hidden"
+                  >
+                    <p class="text-md text-gray-800">
+                      Are you currently insured?
+                    </p>
+                  </div>
+                  <div
+                    id="msg11"
+                    class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-full hidden"
+                  >
+                    <div class="grid grid-rows-2 grid-cols-1 gap-y-3">
+                      <button
+                        class="api-btn chat-button text-white font-bold bg-sky-blue rounded-lg py-3 px-8 funnel-complete-btn finishquiz"
+                        type="button"
+                        data-form-step="3"
+                        data-form-value="Yes"
+                        data-answer="Yes"
+                      >
+                        Yes
+                      </button>
+                      <button
+                        class="api-btn chat-button text-white font-bold bg-sky-blue rounded-lg py-3 px-8 funnel-complete-btn finishquiz"
+                        type="button"
+                        data-form-step="3"
+                        data-form-value="No"
+                        data-answer="No"
+                      >
+                        No
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- User message -->
+              <div id="userBlock3" class="flex items-start justify-end hidden">
+                <div class="mr-3 receiver-chat">
+                  <div
+                    class="bg-blue-500 text-white p-3 rounded-lg shadow-xs mt-2 inline-block"
+                  >
+                    <p id="msg12yes" class="text-md hidden">Yes</p>
+                    <p id="msg12no" class="text-md hidden">No</p>
+                  </div>
+                </div>
+                <div class="flex-shrink-0">
+                  <img
+                    class="w-8 h-8 rounded-full"
+                    src="assets/images/profile.png"
+                    alt="Receiver Avatar"
+                  />
+                </div>
+              </div>
+
+              <!-- Country Selection Block -->
+              <div
+                id="agentBlockCountry"
+                class="flex items-end w-5/6 hidden pt-4"
+              >
+                <div class="flex-shrink-0">
+                  <img
+                    class="w-8 h-8 rounded-full"
+                    src="assets/images/agent.png"
+                    alt="Sender Avatar"
+                  />
+                </div>
+                <div class="ml-3 agent-chat w-full">
+                  <div
+                    id="msgCountry"
+                    class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-full hidden"
+                  >
+                    <p class="text-md text-gray-800">
+                      Select Your Insurance Company
+                    </p>
+                  </div>
+                  <div
+                    id="countrySelectContainer"
+                    class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-full hidden"
+                  >
+                    <select
+                      id="countrySelect"
+                      class="bg-white border rounded-lg px-4 py-2 text-md"
+                      data-form-step="country"
+                    >
+                      <option value="">Select</option>
+                      <option value="ALLSTATE">ALLSTATE</option>
+                      <option value="STATEFARM">STATEFARM</option>
+                      <option value="LIBERTY">LIBERTY</option>
+                      <option value="NATIONWIDE">NATIONWIDE</option>
+                      <option value="FARMERS">FARMERS</option>
+                      <option value="OTHER">OTHER</option>
+                    </select>
+                    <button
+                      class="api-btn chat-button text-white font-bold bg-sky-blue rounded-lg py-2 px-4"
+                      type="button"
+                      id="countrySelectSubmit"
+                      data-form-step="country"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- User response for Country Selection -->
+              <div
+                id="userBlockCountry"
+                class="flex items-start justify-end hidden"
+              >
+                <div class="mr-3 receiver-chat">
+                  <div
+                    class="bg-blue-500 text-white p-3 rounded-lg shadow-xs mt-2 inline-block"
+                  >
+                    <p id="msgUserCountry" class="text-md hidden"></p>
+                  </div>
+                </div>
+                <div class="flex-shrink-0">
+                  <img
+                    class="w-8 h-8 rounded-full"
+                    src="assets/images/profile.png"
+                    alt="Receiver Avatar"
+                  />
+                </div>
+              </div>
+
+              <!-- Agent message -->
+              <div id="agentBlock4" class="flex items-end w-5/6 hidden pt-4">
+                <div class="flex-shrink-0">
+                  <img
+                    class="w-8 h-8 rounded-full"
+                    src="assets/images/agent.png"
+                    alt="Sender Avatar"
+                  />
+                </div>
+                <div class="ml-3 agent-chat w-full">
+                  <div
+                    id="msg13"
+                    class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-full hidden"
+                  >
+                    <p class="text-md text-gray-800 success-msg">
+                      🎉 Congratulations, You Qualify !! 🎁
+                    </p>
+                  </div>
+                  <div
+                    id="msg14"
+                    class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-full hidden"
+                  >
+                    <!-- <p id="msg14approved" class="text-md text-gray-800 hidden">
+                    You pre-qualify! You can use this coverage for your final expenses, burial costs and even unpaid debt. 
+
+                    </p> -->
+                    <p id="msg14disapproveds" class="text-md text-gray-800">
+                      You're qualified to slash your current insurance costs by
+                      up to 50% !
+                    </p>
+                  </div>
+                  <div
+                    id="msg15"
+                    class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-full hidden"
+                  >
+                    <p class="text-md text-gray-800"></p>
+                  </div>
+                  <div
+                    id="msg16"
+                    class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-full hidden"
+                  >
+                    <p id="msg16approveds" class="text-md text-gray-800">
+                      Tap the button below to claim your $25,000 coverage plan.
+                      It only takes a few minutes over the phone.
+                    </p>
+                    <!-- <p id="msg16disapproved" class="text-md text-gray-800 hidden">
+                    Tap the button below to claim your $25,000 funeral benefit. It only takes a few minutes over the phone.
+                    </p> -->
+                  </div>
+                  <div
+                    id="msg17"
+                    class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-full hidden"
+                  >
+                    <p class="text-md text-gray-800 py-2" id="phone-number">
+                      <a
+                        href="tel:+19566550490"
+                        class="chat-button text-white font-bold bg-sky-blue rounded-lg py-3 px-8 ttc-button fephonecallclick external-dni nv-btn api-btn"
+                        >+1 (956) 655-0490</a
+                      >
+                    </p>
+                  </div>
+                  <div
+                    id="msg17a"
+                    class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-full hidden"
+                  >
+                    <p id="msg17approveds" class="text-md text-gray-800">
+                      Due to high call volume, your spot can only be reserved
+                      for
+                      <span id="timer" style="font-weight: bold; color: red"
+                        >03:00</span
+                      >
+                    </p>
+                  </div>
+
+                  <div
+                    id="msg18"
+                    class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-full hidden"
+                  >
+                    <p class="text-md text-gray-800">
+                      Sorry, it seems like you don't qualify for this offer
+                    </p>
+                  </div>
+
+                  <div
+                    id="msg19"
+                    class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-full hidden"
+                  >
+                    <p class="text-md text-gray-800">
+                      BUT... you do qualify for the offers below
+                    </p>
+                  </div>
+                  <div
+                    id="msg20"
+                    class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-full hidden"
+                  >
+                    <button
+                      class="chat-button text-white font-bold bg-blue-500 rounded-full py-3 px-12"
+                      type="button"
+                      onclick="window.location.href='https://dwizr.com/?a=7669&c=3792&p=r&s1=&s2=&s3='"
+                    >
+                      Claim My Benefits
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Disconnect message -->
+              <div id="disconnected" class="pt-2 hidden">
+                <div class="relative flex py-5 items-center">
+                  <div class="flex-grow border-t border-gray-200"></div>
+                  <span class="flex-shrink mx-4 text-gray-300 text-xs"
+                    >Chat Closed</span
+                  >
+                  <div class="flex-grow border-t border-gray-200"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="tcpa" class="pt-2 hidden">
+      <div
+        class="mx-auto max-w-7xl overflow-hidden px-6 lg:px-8 text-sm sm:text-md leading-5 sm:leading-6 text-gray-500"
+      >
+        <div
+          class="tcpa-container text-xs text-center leading-5 text-gray-500"
+        ></div>
+      </div>
+    </div>
+
+    <footer class="bg-gray-100 border-t border-t-1 border-t-gray-200 mt-8">
+      <div
+        class="mx-auto max-w-7xl overflow-hidden px-6 py-8 lg:px-8 text-sm sm:text-md leading-5 sm:leading-6 text-gray-500"
+      >
+        <p class="text-center pb-4 text-blue-400">
+          <span
+            ><a href="/privacy.html" target="_blank">Privacy Policy</a>
+            |
+            <a href="/terms.html" target="_blank"
+              >Terms &amp; Conditions</a
+            ></span
+          >
+        </p>
+      </div>
+    </footer>
+
+    <script
+      src="assets/js/jquery-3.7.0.min.js"
+      integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+      crossorigin="anonymous"
+    ></script>
+    <script src="assets/js/custom.js?id=3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/umd/uuidv4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/UAParser.js/0.7.28/ua-parser.min.js"></script>
+    <script src="../assets/apijs/api.js" type="text/javascript"></script>
+  </body>
+</html>
