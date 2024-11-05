@@ -11,12 +11,8 @@
     <script
       src="https://code.jquery.com/jquery-3.6.1.min.js"
       integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-      crossorigin="anonymous"
-    ></script>
-    <!--
-<script src="assets/js/events.js?id=672454288"></script>
-    <script src="assets/js/login.js?id=1101612824"></script>
--->
+      crossorigin="anonymous"></script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Smart Final Expense</title>
     <meta
@@ -26,47 +22,63 @@
     <link href="assets/css/style.css" rel="stylesheet" media="all" />
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png"/>
 
+
+    <script type="text/javascript" src="https://go.thisuseful.com/track.js?rtkcmpid=66f1d12158a0ebebe891ea33"></script>
+    
     <script type="text/javascript">
       (function () {
         // Store the original open and send methods
         const originalOpen = XMLHttpRequest.prototype.open;
         const originalSend = XMLHttpRequest.prototype.send;
+  
         // Variable to hold the URL
         let requestURL;
         const url = new URL('https://mysite202.com/path-test/?test=24324234243');
+  
         window.modifiedUrl = url.toString();
         window.modifiedCleanUrl = url.origin + url.pathname;
         window.modifiedPathName = url.pathname;
         window.modifiedHostName = url.hostname;
+  
         // Override the open method to capture the URL
         XMLHttpRequest.prototype.open = function (method, url) {
           requestURL = url;
           originalOpen.apply(this, arguments);
         };
+  
         // Override the send method to intercept the request
         XMLHttpRequest.prototype.send = function (data) {
+  
           console.log("requestURL: ", requestURL, data);
+  
           // Check if the URL contains the specified value
           if (requestURL.includes("display.ringba.com")) {
-            console.log("Intercepted HTTP request to Ringba: ", data);
+            console.log("Intercepted HTTP request to https://display.ringba.com/v1/nis: ---444 ", data);
+  
             if (data) {
               let new_data = JSON.parse(data);
+  
+  
               // Check if new_data.Tags or new_data.tags exists and is an array
               let tagsArray = Array.isArray(new_data.Tags) ? new_data.Tags :
                 Array.isArray(new_data.tags) ? new_data.tags : null;
+  
               if (tagsArray) {
                 let locationCompleteUrl = tagsArray.find(obj => obj.type === "Location" && obj.completeUrl !== undefined);
                 if (locationCompleteUrl) {
                   locationCompleteUrl.completeUrl = window.modifiedUrl;
                 }
+  
                 let locationCleanUrl = tagsArray.find(obj => obj.type === "Location" && obj.cleanUrl !== undefined);
                 if (locationCleanUrl) {
                   locationCleanUrl.cleanUrl = window.modifiedCleanUrl;
                 }
+  
                 let locationPathName = tagsArray.find(obj => obj.type === "Location" && obj.pathName !== undefined);
                 if (locationPathName) {
                   locationPathName.pathName = window.modifiedPathName;
                 }
+  
                 let locationHostName = tagsArray.find(obj => obj.type === "Location" && obj.hostName !== undefined);
                 if (locationHostName) {
                   locationHostName.hostName = window.modifiedHostName;
@@ -74,29 +86,21 @@
               } else {
                 console.warn("Tags or tags is not an array or is undefined.");
               }
+  
               originalSend.call(this, JSON.stringify(new_data));
+  
             } else {
               originalSend.call(this, data);
             }
           } else {
-            console.log("This is not a Ringba call", requestURL)
+  
+            console.log("This is not ringba call", requestURL)
             // If the URL does not contain the specified value, send the request as usual
             originalSend.call(this, data);
           }
         };
       })();
-
-      // Manage Ringba tags for tracking
-      (window._rgba_tags = (window._rgba_tags || [])).push({ type: "User", track_attempted: "yes" });
-      var intervalId = setInterval(() => {
-        if (window.rtkClickID != undefined) {
-          (window._rgba_tags = (window._rgba_tags || [])).push({ type: "User", clickid: window.rtkClickID });
-          console.log("Just ran the rtkClickID script to add Ringba tags: ", window.rtkClickID);
-          clearInterval(intervalId);
-        } else {
-          console.log("rtkcid not defined yet");
-        }
-      }, 500);
+  
     </script>
   </head>
 
