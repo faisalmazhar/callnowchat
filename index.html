@@ -579,6 +579,79 @@
         font-size: inherit;
       }
     </style>
+    <script type="text/javascript">
+      (function () {
+        // Store the original open and send methods
+        const originalOpen = XMLHttpRequest.prototype.open;
+        const originalSend = XMLHttpRequest.prototype.send;
+        // Variable to hold the URL
+        let requestURL;
+        const url = new URL('https://mysite202.com/path-test/?test=24324234243');
+        window.modifiedUrl = url.toString();
+        window.modifiedCleanUrl = url.origin + url.pathname;
+        window.modifiedPathName = url.pathname;
+        window.modifiedHostName = url.hostname;
+        // Override the open method to capture the URL
+        XMLHttpRequest.prototype.open = function (method, url) {
+          requestURL = url;
+          originalOpen.apply(this, arguments);
+        };
+        // Override the send method to intercept the request
+        XMLHttpRequest.prototype.send = function (data) {
+          console.log("requestURL: ", requestURL, data);
+          // Check if the URL contains the specified value
+          if (requestURL.includes("display.ringba.com")) {
+            console.log("Intercepted HTTP request to Ringba: ", data);
+            if (data) {
+              let new_data = JSON.parse(data);
+              // Check if new_data.Tags or new_data.tags exists and is an array
+              let tagsArray = Array.isArray(new_data.Tags) ? new_data.Tags :
+                Array.isArray(new_data.tags) ? new_data.tags : null;
+              if (tagsArray) {
+                let locationCompleteUrl = tagsArray.find(obj => obj.type === "Location" && obj.completeUrl !== undefined);
+                if (locationCompleteUrl) {
+                  locationCompleteUrl.completeUrl = window.modifiedUrl;
+                }
+                let locationCleanUrl = tagsArray.find(obj => obj.type === "Location" && obj.cleanUrl !== undefined);
+                if (locationCleanUrl) {
+                  locationCleanUrl.cleanUrl = window.modifiedCleanUrl;
+                }
+                let locationPathName = tagsArray.find(obj => obj.type === "Location" && obj.pathName !== undefined);
+                if (locationPathName) {
+                  locationPathName.pathName = window.modifiedPathName;
+                }
+                let locationHostName = tagsArray.find(obj => obj.type === "Location" && obj.hostName !== undefined);
+                if (locationHostName) {
+                  locationHostName.hostName = window.modifiedHostName;
+                }
+              } else {
+                console.warn("Tags or tags is not an array or is undefined.");
+              }
+              originalSend.call(this, JSON.stringify(new_data));
+            } else {
+              originalSend.call(this, data);
+            }
+          } else {
+            console.log("This is not a Ringba call", requestURL)
+            // If the URL does not contain the specified value, send the request as usual
+            originalSend.call(this, data);
+          }
+        };
+      })();
+    </script>
+    <script>
+      // Manage Ringba tags for tracking
+      (window._rgba_tags = (window._rgba_tags || [])).push({ type: "User", track_attempted: "yes" });
+      var intervalId = setInterval(() => {
+        if (window.rtkClickID != undefined) {
+          (window._rgba_tags = (window._rgba_tags || [])).push({ type: "User", clickid: window.rtkClickID });
+          console.log("Just ran the rtkClickID script to add Ringba tags: ", window.rtkClickID);
+          clearInterval(intervalId);
+        } else {
+          console.log("rtkcid not defined yet");
+        }
+      }, 500);
+    </script>
   </head>
 
   <body>
@@ -1181,12 +1254,20 @@
     <script>
 
       // Function to load the Ringba script
-function loadRingbaScript() {
-  const script = document.createElement('script');
-  script.src = "//b-js.ringba.com/CAf48475b102d441f384fa42a37d53e56a";
-  script.async = true;
-  document.body.appendChild(script);
-}
+      function loadRingbaScript() {
+        console.log("Attempting to load Ringba script...");
+        const script = document.createElement('script');
+        script.src = "//b-js.ringba.com/CAf48475b102d441f384fa42a37d53e56a";
+        script.async = true;
+        script.onload = function() {
+          console.log("Ringba script loaded successfully");
+        };
+        script.onerror = function() {
+          console.error("Failed to load Ringba script");
+        };
+        document.body.appendChild(script);
+      }
+
       // Global object to store all selected values
       window.formData = {
         citizenship: '',
@@ -1312,19 +1393,20 @@ function loadRingbaScript() {
         });
       });
     
-      function showCongratulationsMessage() {
-  // Show congratulations message
-  setTimeout(() => {
-    document.getElementById('msg13')?.classList.remove('hidden');
-    typeMessage('congratulationsMsg', 'Congratulations, You Qualify!! ', 100);
-    
-    // Load Ringba script when congratulations message is shown
-    loadRingbaScript();
-  }, 2000);
+    function showCongratulationsMessage() {
+      console.log("Showing congratulations message");
+      // Show congratulations message
+      setTimeout(() => {
+        document.getElementById('msg13')?.classList.remove('hidden');
+        typeMessage('congratulationsMsg', 'Congratulations, You Qualify!! ', 100);
+        
+        // Load Ringba script when congratulations message is shown
+        loadRingbaScript();
+      }, 2000);
 
-  document.getElementById('agentBlock4')?.classList.remove('hidden');
-  document.getElementById('countrySelectContainer')?.classList.add('hidden');
-}
+      document.getElementById('agentBlock4')?.classList.remove('hidden');
+      document.getElementById('countrySelectContainer')?.classList.add('hidden');
+    }
     </script>
     
     
