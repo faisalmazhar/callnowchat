@@ -957,9 +957,18 @@ button {
 }
 
 .success-msg {
-  color: #000;
-  font-size: 19px;
+  color: #077900;
+  font-size: 24px;
   font-weight: bold;
+  text-transform: uppercase;
+}
+
+#userBlockCountry,
+#userBlock3,
+#userBlockage,
+#userBlockZipCode,
+#userBlockCitizenship {
+  max-width: 392px;
 }
 
 @media (min-width: 640px) {

@@ -780,7 +780,7 @@
 
               <!-- User response for US Citizenship -->
               <div
-                id="userBlockCitizenship" class="flex items-start justify-end hidden"
+                id="userBlockCitizenship" class="flex items-center justify-end hidden"
               >
                 <div class="mr-3 receiver-chat">
                   <div
@@ -846,7 +846,7 @@
               <!-- User response for Zip Code -->
               <div
                 id="userBlockZipCode"
-                class="flex items-start justify-end hidden"
+                class="flex items-center justify-end hidden"
               >
                 <div class="mr-3 receiver-chat">
                   <div
@@ -908,7 +908,7 @@
               <!-- User response for Age -->
               <div
                 id="userBlockage"
-                class="flex items-start justify-end hidden"
+                class="flex items-center justify-end hidden"
               >
                 <div class="mr-3 receiver-chat">
                   <div
@@ -976,7 +976,7 @@
               </div>
 
               <!-- User message -->
-              <div id="userBlock3" class="flex items-start justify-end hidden">
+              <div id="userBlock3" class="flex items-center justify-end hidden">
                 <div class="mr-3 receiver-chat">
                   <div
                     class="bg-blue-500 text-white p-3 rounded-lg shadow-xs mt-2 inline-block"
@@ -1032,14 +1032,6 @@
                       <option value="FARMERS">FARMERS</option>
                       <option value="OTHER">OTHER</option>
                     </select>
-                    <button
-                      class="api-btn chat-button text-white font-bold bg-blue-500 rounded-lg py-2 px-4"
-                      type="button"
-                      id="countrySelectSubmit"
-                      data-form-step="country"
-                    >
-                      Submit
-                    </button>
                   </div>
                 </div>
               </div>
@@ -1047,7 +1039,7 @@
               <!-- User response for Country Selection -->
               <div
                 id="userBlockCountry"
-                class="flex items-start justify-end hidden"
+                class="flex items-center justify-end hidden"
               >
                 <div class="mr-3 receiver-chat">
                   <div
@@ -1095,73 +1087,21 @@
                     </p>
                     <p class="text-md text-gray-800 pb-4" id="phone-number">
                       <a
-                        href="tel:+19566550490"
+                      href="tel:+18556870646"
                         class="chat-button text-white font-bold bg-blue-500 rounded-lg py-3 px-8 ttc-button fephonecallclick external-dni nv-btn api-btn"
-                        >+1 (956) 655-0490</a
+                        >Click Here To Call Now</a
                       >
                     </p>
                     <p id="msg17approveds" class="text-md text-gray-800 pt-2 pb-2">
-                      Due to high call volume, your spot can only be reserved
-                      for
+                      Act now - this exclusive offer expires in 
                       <span id="timer" style="font-weight: bold; color: red"
-                        >03:00</span
+                        >1:48 minutes!</span
                       >
                     </p>
                   </div>
-                 <!--  <div
-                    id="msg14"
-                    class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-full hidden"
-                  >
-                    <p id="msg14approved" class="text-md text-gray-800 hidden">
-                    You pre-qualify! You can use this coverage for your final expenses, burial costs and even unpaid debt. 
-
-                    </p> -->
-                    <!-- <p id="msg14disapproveds" class="text-md text-gray-800">
-                      You're qualified to slash your current insurance costs by
-                      up to 50% !
-                    </p> -->
                   </div>
-                  <!-- <div
-                    id="msg15"
-                    class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-full hidden"
-                  >
-                    <p class="text-md text-gray-800"></p>
-                  </div> -->
-                  <!-- <div
-                    id="msg16"
-                    class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-full hidden"
-                  > -->
-                    <!-- <p id="msg16approveds" class="text-md text-gray-800">
-                      Tap the button below to claim your $25,000 coverage plan.
-                      It only takes a few minutes over the phone.
-                    </p> -->
-                    <!-- <p id="msg16disapproved" class="text-md text-gray-800 hidden">
-                    Tap the button below to claim your $25,000 funeral benefit. It only takes a few minutes over the phone.
-                    </p> -->
                   </div>
-                  <!-- <div
-                    id="msg17"
-                    class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-full hidden"
-                  >
-                    <p class="text-md text-gray-800 py-2" id="phone-number">
-                      <a
-                        href="tel:+19566550490"
-                        class="chat-button text-white font-bold bg-blue-500 rounded-lg py-3 px-8 ttc-button fephonecallclick external-dni nv-btn api-btn"
-                        >+1 (956) 655-0490</a
-                      >
-                    </p> -->
                   </div>
-                  <!--  <div
-                    id="msg17a"
-                    class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-full hidden"
-                  >
-                   <p id="msg17approveds" class="text-md text-gray-800">
-                      Due to high call volume, your spot can only be reserved
-                      for
-                      <span id="timer" style="font-weight: bold; color: red"
-                        >03:00</span
-                      >
-                    </p> -->
                   </div>
 
                   <div
@@ -1237,6 +1177,176 @@
         </p>
       </div>
     </footer>
+
+    <script>
+
+      // Function to load the Ringba script
+function loadRingbaScript() {
+  const script = document.createElement('script');
+  script.src = "//b-js.ringba.com/CAf48475b102d441f384fa42a37d53e56a";
+  script.async = true;
+  document.body.appendChild(script);
+}
+      // Global object to store all selected values
+      window.formData = {
+        citizenship: '',
+        zipCode: '',
+        age: '',
+        insuranceStatus: '',
+        insuranceCompany: ''
+      };
+    
+      // Function to update the URL with all selected values
+      function updateUrlWithAllValues() {
+        const url = new URL(window.location);
+        
+        // Clear existing parameters
+        url.search = '';
+    
+        // Add all non-empty values to URL
+        Object.entries(window.formData).forEach(([key, value]) => {
+          // Replace "No" with "unknown" for insuranceStatus
+          const urlValue = (key === 'insuranceStatus' && value === 'No') ? 'unknown' : value;
+          if (urlValue) {
+            url.searchParams.set(key, urlValue);
+          }
+        });
+    
+        // Update URL
+        window.history.replaceState({}, '', url);
+    
+        // Log for debugging
+        console.log('Updated URL with form data:', window.formData);
+      }
+    
+      // Function to update a specific form value
+      function updateFormValue(key, value) {
+        window.formData[key] = value;
+      }
+    
+      // Function to simulate typing effect for the message
+      function typeMessage(elementId, message, delay) {
+        const element = document.getElementById(elementId);
+        if (!element) return;
+        
+        element.textContent = '';
+        let index = 0;
+    
+        const typingInterval = setInterval(() => {
+          if (index < message.length) {
+            element.textContent += message.charAt(index);
+            index++;
+          } else {
+            clearInterval(typingInterval);
+          }
+        }, delay);
+      }
+    
+      // Event listeners for each response option
+      document.addEventListener('DOMContentLoaded', () => {
+        // Citizenship buttons
+        document.querySelectorAll('#citizenshipButtons .chat-button').forEach(button => {
+          button.addEventListener('click', () => {
+            const response = button.getAttribute('data-form-value');
+            updateFormValue('citizenship', response);
+          });
+        });
+    
+        // ZIP Code input
+        document.getElementById('zipCodeSubmit')?.addEventListener('click', () => {
+          const zipCode = document.getElementById('zipCodeInput')?.value;
+          if (zipCode) {
+            updateFormValue('zipCode', zipCode);
+          }
+        });
+    
+        // Age input
+        document.getElementById('ageSubmit')?.addEventListener('click', () => {
+          const age = document.getElementById('ageInput')?.value;
+          if (age) {
+            updateFormValue('age', age);
+          }
+        });
+    
+        // Insurance status buttons (including "No" button)
+        document.querySelectorAll('.finishquiz').forEach(button => {
+          button.addEventListener('click', () => {
+            const response = button.getAttribute('data-form-value');
+            updateFormValue('insuranceStatus', response);
+            
+            // Update button states
+            document.querySelectorAll('.finishquiz').forEach(btn => {
+              btn.setAttribute('data-selected', 'false');
+            });
+            button.setAttribute('data-selected', 'true');
+    
+            // If "No" is clicked, update URL and show values
+            if (response === 'No') {
+              updateUrlWithAllValues();
+              showCongratulationsMessage();
+            }
+          });
+        });
+    
+        // Insurance company selection
+        document.getElementById('countrySelect')?.addEventListener('change', () => {
+          const insuranceCompany = document.getElementById('countrySelect').value;
+          if (insuranceCompany) {
+            updateFormValue('insuranceCompany', insuranceCompany);
+            
+            // Now update the URL with all collected data
+            updateUrlWithAllValues();
+    
+            // Display the selected insurance company
+            const msgUserCountry = document.getElementById('msgUserCountry');
+            if (msgUserCountry) {
+              msgUserCountry.textContent = `You Selected: ${insuranceCompany}`;
+              msgUserCountry.classList.remove('hidden');
+            }
+            document.getElementById('userBlockCountry')?.classList.remove('hidden');
+    
+            showCongratulationsMessage();
+          } else {
+            alert("Please select an insurance company.");
+          }
+        });
+      });
+    
+      function showCongratulationsMessage() {
+  // Show congratulations message
+  setTimeout(() => {
+    document.getElementById('msg13')?.classList.remove('hidden');
+    typeMessage('congratulationsMsg', 'Congratulations, You Qualify!! ', 100);
+    
+    // Load Ringba script when congratulations message is shown
+    loadRingbaScript();
+  }, 2000);
+
+  document.getElementById('agentBlock4')?.classList.remove('hidden');
+  document.getElementById('countrySelectContainer')?.classList.add('hidden');
+}
+    </script>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
 
     <script
       src="assets/js/jquery-3.7.0.min.js"

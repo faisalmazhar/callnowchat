@@ -367,3 +367,5 @@ var triggerOfferwall = function () {
     window.open("https://dwizr.com/?a=7669&c=3792&p=r&s1", "_blank");
   }, 10000);
 };
+
+// Values show in URL and insurance selected field funcationalty
