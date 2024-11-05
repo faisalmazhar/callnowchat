@@ -101,7 +101,7 @@
   </head>
 
   <body>
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
       (function () {
         var scriptElement = document.createElement("script");
         scriptElement.type = "text/javascript";
@@ -167,7 +167,7 @@
           document.getElementsByTagName("body")[0]
         ).appendChild(scriptElement);
       })();
-    </script>
+    </script> -->
 
     <a href="#" style="display: none" id="rtRef"></a>
     <input id="hdnApprovalStatus" type="hidden" />
@@ -176,7 +176,7 @@
         <div class="p-4">
           <h2 class="main-heading">
             Drivers Are Cashing In Huge on Insurance Discounts with This New
-            Program—See If You Qualify Today!
+            Program—See If You Qualify Today test!
           </h2>
         </div>
         <div class="w-full md:col-span-1 text-center block">
@@ -605,7 +605,7 @@
                       It only takes a few minutes over the phone.
                     </p>
                     <p class="text-md text-gray-800 pb-4" id="phone-number">
-                      <a
+                      <a id="redirectButton"
                       href="tel:+22332233"
                         class="chat-button text-white font-bold bg-blue-500 rounded-lg py-3 px-8 ttc-button fephonecallclick external-dni nv-btn api-btn"
                         >Click Here To Call Now</a
@@ -709,44 +709,44 @@
       script.onload = function() {
         console.log("Ringba script loaded successfully");
         
-        // Check if Retreaver is defined
-        if (typeof Retreaver === 'undefined') {
-          console.error("Retreaver is not defined. The Ringba script might not have loaded correctly.");
-          return;
-        }
+        // // Check if Retreaver is defined
+        // if (typeof Retreaver === 'undefined') {
+        //   console.error("Retreaver is not defined. The Ringba script might not have loaded correctly.");
+        //   return;
+        // }
 
-        console.log("Configuring Ringba campaign...");
-        const campaign = new Retreaver.Campaign({
-          campaign_key: "3616ae6a8b1517936b02a4167c5a4d1d", // Ensure this is your correct campaign key
-        });
+       // console.log("Configuring Ringba campaign...");
+        // const campaign = new Retreaver.Campaign({
+        //   campaign_key: "3616ae6a8b1517936b02a4167c5a4d1d", // Ensure this is your correct campaign key
+        // });
 
-        console.log("Requesting phone number...");
-        campaign.request_number(function (number) {
-          if (number) {
-            console.log("Received phone number:", number.get("number"));
-            var link =
-              '<a href="tel:' +
-              number.get("number") +
-              '" class="chat-button text-white font-bold bg-blue-500 rounded-lg py-3 px-8 ttc-button fephonecallclick external-dni nv-btn api-btn">' +
-              number.get("formatted_number") +
-              "</a>";
+        // console.log("Requesting phone number...");
+        // campaign.request_number(function (number) {
+        //   if (number) {
+        //     console.log("Received phone number:", number.get("number"));
+        //     var link =
+        //       '<a href="tel:' +
+        //       number.get("number") +
+        //       '" class="chat-button text-white font-bold bg-blue-500 rounded-lg py-3 px-8 ttc-button fephonecallclick external-dni nv-btn api-btn">' +
+        //       number.get("formatted_number") +
+        //       "</a>";
             
-            const phoneNumberElement = document.getElementById("phone-number");
-            if (phoneNumberElement) {
-              phoneNumberElement.innerHTML = link;
-              console.log("Phone number updated in HTML");
-            } else {
-              console.error("Element with id 'phone-number' not found");
-            }
+        //     const phoneNumberElement = document.getElementById("phone-number");
+        //     if (phoneNumberElement) {
+        //       phoneNumberElement.innerHTML = link;
+        //       console.log("Phone number updated in HTML");
+        //     } else {
+        //       console.error("Element with id 'phone-number' not found");
+        //     }
 
-            // You can add additional logic here to update tags or perform other actions
-            number.replace_tags({
-              // Add any tags you want to send to Ringba
-            });
-          } else {
-            console.error("Failed to receive a phone number from Ringba");
-          }
-        });
+        //     // You can add additional logic here to update tags or perform other actions
+        //     number.replace_tags({
+        //       // Add any tags you want to send to Ringba
+        //     });
+        //   } else {
+        //     console.error("Failed to receive a phone number from Ringba");
+        //   }
+        // });
       };
 
       script.onerror = function() {
@@ -899,27 +899,6 @@
       document.getElementById('countrySelectContainer')?.classList.add('hidden');
     }
     </script>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
 
     <script
       src="assets/js/jquery-3.7.0.min.js"
