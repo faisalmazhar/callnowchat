@@ -24,7 +24,7 @@
 
 
     <script type="text/javascript" src="https://go.thisuseful.com/track.js?rtkcmpid=66f1d12158a0ebebe891ea33"></script>
-
+    
     <script type="text/javascript">
       (function () {
         // Store the original open and send methods
@@ -180,7 +180,7 @@
         <div class="p-4">
           <h2 class="main-heading">
             Drivers Are Cashing In Huge on Insurance Discounts with This New
-            Program—See If You Qualify Today!
+            Program—See If You Qualify Today !
           </h2>
         </div>
         <div class="w-full md:col-span-1 text-center block">
@@ -701,225 +701,46 @@
       </div>
     </footer>
 
-    <script>
 
-     // Function to load the Ringba script and update the phone number
-     function loadRingbaScript() {
-      console.log("Attempting to load Ringba script...");
-      const script = document.createElement('script');
-      script.src = "//b-js.ringba.com/CAf48475b102d441f384fa42a37d53e56a";
-      script.async = true;
-
-      script.onload = function() {
-        console.log("Ringba script loaded successfully");
-        
-        // // Check if Retreaver is defined
-        // if (typeof Retreaver === 'undefined') {
-        //   console.error("Retreaver is not defined. The Ringba script might not have loaded correctly.");
-        //   return;
-        // }
-
-       // console.log("Configuring Ringba campaign...");
-        // const campaign = new Retreaver.Campaign({
-        //   campaign_key: "3616ae6a8b1517936b02a4167c5a4d1d", // Ensure this is your correct campaign key
-        // });
-
-        // console.log("Requesting phone number...");
-        // campaign.request_number(function (number) {
-        //   if (number) {
-        //     console.log("Received phone number:", number.get("number"));
-        //     var link =
-        //       '<a href="tel:' +
-        //       number.get("number") +
-        //       '" class="chat-button text-white font-bold bg-blue-500 rounded-lg py-3 px-8 ttc-button fephonecallclick external-dni nv-btn api-btn">' +
-        //       number.get("formatted_number") +
-        //       "</a>";
-            
-        //     const phoneNumberElement = document.getElementById("phone-number");
-        //     if (phoneNumberElement) {
-        //       phoneNumberElement.innerHTML = link;
-        //       console.log("Phone number updated in HTML");
-        //     } else {
-        //       console.error("Element with id 'phone-number' not found");
-        //     }
-
-        //     // You can add additional logic here to update tags or perform other actions
-        //     number.replace_tags({
-        //       // Add any tags you want to send to Ringba
-        //     });
-        //   } else {
-        //     console.error("Failed to receive a phone number from Ringba");
-        //   }
-        // });
-      };
-
-      script.onerror = function() {
-        console.error("Failed to load Ringba script");
-      };
-
-      document.body.appendChild(script);
-    }
-
-    // Call the function to load Ringba
-    loadRingbaScript();
-
-      // Global object to store all selected values
-      window.formData = {
-        citizenship: '',
-        zipCode: '',
-        age: '',
-        insuranceStatus: '',
-        insuranceCompany: ''
-      };
-    
-      // Function to update the URL with all selected values
-      function updateUrlWithAllValues() {
-        const url = new URL(window.location);
-        
-        // Clear existing parameters
-        url.search = '';
-    
-        // Add all non-empty values to URL
-        Object.entries(window.formData).forEach(([key, value]) => {
-          // Replace "No" with "unknown" for insuranceStatus
-          const urlValue = (key === 'insuranceStatus' && value === 'No') ? 'unknown' : value;
-          if (urlValue) {
-            url.searchParams.set(key, urlValue);
-          }
-        });
-    
-        // Update URL
-        window.history.replaceState({}, '', url);
-    
-        // Log for debugging
-        console.log('Updated URL with form data:', window.formData);
-      }
-    
-      // Function to update a specific form value
-      function updateFormValue(key, value) {
-        window.formData[key] = value;
-      }
-    
-      // Function to simulate typing effect for the message
-      function typeMessage(elementId, message, delay) {
-    const element = document.getElementById(elementId);
-    if (!element) {
-        console.error(`Element with ID ${elementId} not found.`);
-        return;
-    }
-    element.textContent = '';
-    let index = 0;
-    const typingInterval = setInterval(() => {
-        if (index < message.length) {
-            element.textContent += message.charAt(index);
-            index++;
-        } else {
-            clearInterval(typingInterval);
-        }
-    }, delay);
-}
-
-    
-      // Event listeners for each response option
-      document.addEventListener('DOMContentLoaded', () => {
-        // Citizenship buttons
-        document.querySelectorAll('#citizenshipButtons .chat-button').forEach(button => {
-          button.addEventListener('click', () => {
-            const response = button.getAttribute('data-form-value');
-            updateFormValue('citizenship', response);
-          });
-        });
-    
-        // ZIP Code input
-        document.getElementById('zipCodeSubmit')?.addEventListener('click', () => {
-          const zipCode = document.getElementById('zipCodeInput')?.value;
-          if (zipCode) {
-            updateFormValue('zipCode', zipCode);
-          }
-        });
-    
-        // Age input
-        document.getElementById('ageSubmit')?.addEventListener('click', () => {
-          const age = document.getElementById('ageInput')?.value;
-          if (age) {
-            updateFormValue('age', age);
-          }
-        });
-    
-        // Insurance status buttons (including "No" button)
-        document.querySelectorAll('.finishquiz').forEach(button => {
-          button.addEventListener('click', () => {
-            const response = button.getAttribute('data-form-value');
-            updateFormValue('insuranceStatus', response);
-            
-            // Update button states
-            document.querySelectorAll('.finishquiz').forEach(btn => {
-              btn.setAttribute('data-selected', 'false');
-            });
-            button.setAttribute('data-selected', 'true');
-    
-            // If "No" is clicked, update URL and show values
-            if (response === 'No') {
-              updateUrlWithAllValues();
-              showCongratulationsMessage();
-            }
-          });
-        });
-    
-        // Insurance company selection
-        document.getElementById('countrySelect')?.addEventListener('change', () => {
-          const insuranceCompany = document.getElementById('countrySelect').value;
-          if (insuranceCompany) {
-            updateFormValue('insuranceCompany', insuranceCompany);
-            
-            // Now update the URL with all collected data
-            updateUrlWithAllValues();
-    
-            // Display the selected insurance company
-            const msgUserCountry = document.getElementById('msgUserCountry');
-            if (msgUserCountry) {
-              msgUserCountry.textContent = `You Selected: ${insuranceCompany}`;
-              msgUserCountry.classList.remove('hidden');
-            }
-            document.getElementById('userBlockCountry')?.classList.remove('hidden');
-    
-            showCongratulationsMessage();
-          } else {
-            alert("Please select an insurance company.");
-          }
-        });
-      });
-    
-    function showCongratulationsMessage() {
-      const element = document.getElementById('congratulationsMsg'); // Example ID
-if (element) {
-    element.textContent = 'Congratulations!';
-} else {
-    console.error('Element not found for congratulations message');
-}
-
-      // Show congratulations message
-      setTimeout(() => {
-        document.getElementById('msg13')?.classList.remove('hidden');
-        typeMessage('congratulationsMsg', 'Congratulations, You Qualify!! ', 100);
-        
-        // Load Ringba script when congratulations message is shown
-        loadRingbaScript();
-      }, 2000);
-
-      document.getElementById('agentBlock4')?.classList.remove('hidden');
-      document.getElementById('countrySelectContainer')?.classList.add('hidden');
-    }
-    </script>
-
-    <script
-      src="assets/js/jquery-3.7.0.min.js"
-      integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
-      crossorigin="anonymous"
-    ></script>
     <script src="assets/js/custom.js?id=3"></script>
-    <script src="https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/umd/uuidv4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/UAParser.js/0.7.28/ua-parser.min.js"></script>
-    <script src="../assets/apijs/api.js" type="text/javascript"></script>
+      <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+  integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
+
+    <script>
+      (window._rgba_tags = (window._rgba_tags || [])).push({ type: "User", track_attempted: "yes" });
+      var intervalId = setInterval(() => {
+        if (window.rtkClickID != undefined) {
+          (window._rgba_tags = (window._rgba_tags || [])).push({ type: "User", clickid: window.rtkClickID });
+          console.log("Just ran the rtkClickID script to add Ringba tags: ", window.rtkClickID);
+          clearInterval(intervalId);
+        } else {
+          console.log("rtkcid not defined yet");
+        }
+      }, 500);
+    </script>
+  
+  
+    <!-- Meta Pixel Code -->
+    <script>
+      !function (f, b, e, v, n, t, s) {
+        if (f.fbq) return; n = f.fbq = function () {
+          n.callMethod ?
+          n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+        };
+        if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+        n.queue = []; t = b.createElement(e); t.async = !0;
+        t.src = v; s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s)
+      }(window, document, 'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1574697503425906');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=1574697503425906&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
+  
   </body>
 </html>
