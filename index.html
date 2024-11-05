@@ -104,73 +104,6 @@
   </head>
 
   <body>
-    <!-- <script type="text/javascript">
-      (function () {
-        var scriptElement = document.createElement("script");
-        scriptElement.type = "text/javascript";
-        scriptElement.async = true;
-        scriptElement.defer = true;
-        scriptElement.src =
-          document.location.protocol +
-          "//dist.routingapi.com/jsapi/v1/retreaver.min.js";
-        scriptElement.onload = scriptElement.onreadystatechange = function () {
-          Retreaver.configure({
-            host: "api.routingapi.com",
-            prefix: document.location.protocol == "https:" ? "https" : "http",
-          });
-
-          var campaign = new Retreaver.Campaign({
-            campaign_key: "3616ae6a8b1517936b02a4167c5a4d1d",
-          });
-
-          function getSkroClickIdFromCookies() {
-            const skroClickId = document.cookie
-              .split(";")
-              .map((x) => x.trim())
-              .filter((x) => x.startsWith("skro-click-id"))[0];
-            return skroClickId ? skroClickId.split("=")[1] : "";
-          }
-          msg4;
-
-          console.log("Skro Click ID: " + getSkroClickIdFromCookies());
-
-          campaign.request_number(function (number) {
-            var link =
-              '<a href="tel:' +
-              number.get("number") +
-              '" class="chat-button text-white font-bold bg-blue-500 rounded-full py-3 px-8 ttc-button fephonecallclick external-dni nv-btn api-btn" onclick="clickToCall()"><i class="bi bi-telephone flex-shrink-0"></i>' +
-              number.get("formatted_number") +
-              "</a>";
-            document.getElementById("phone-number").innerHTML = link;
-
-            $.getJSON(
-              "https://api.ipapi.com/api/check?access_key=a0fb034650b925339c887b37f2df1267",
-              function (data) {
-                console.log("zip: " + data.zip);
-
-                //$.getJSON('https://ipinfo.io/json', function(data){
-                //console.log("zip: " + data.postal);
-
-                number.replace_tags({
-                  skclid:
-                    window.skclid !== undefined
-                      ? window.skclid
-                      : getSkroClickIdFromCookies(),
-                  caller_zip: data.zip,
-                  publisher_id: "002",
-                });
-              }
-            );
-
-            //console.log("Skro Click ID test: " + getSkroClickIdFromCookies());
-          });
-        };
-        (
-          document.getElementsByTagName("head")[0] ||
-          document.getElementsByTagName("body")[0]
-        ).appendChild(scriptElement);
-      })();
-    </script> -->
 
     <a href="#" style="display: none" id="rtRef"></a>
     <input id="hdnApprovalStatus" type="hidden" />
@@ -718,27 +651,7 @@
         }
       }, 500);
     </script>
-  
-  
-    <!-- Meta Pixel Code -->
-    <script>
-      !function (f, b, e, v, n, t, s) {
-        if (f.fbq) return; n = f.fbq = function () {
-          n.callMethod ?
-          n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-        };
-        if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-        n.queue = []; t = b.createElement(e); t.async = !0;
-        t.src = v; s = b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t, s)
-      }(window, document, 'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '1574697503425906');
-      fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=1574697503425906&ev=PageView&noscript=1" /></noscript>
-    <!-- End Meta Pixel Code -->
+
   
   </body>
 </html>
