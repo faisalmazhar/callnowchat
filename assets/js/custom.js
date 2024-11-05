@@ -202,30 +202,43 @@ function showCongratulationsMessage() {
 
 
 
-var startTime = 3.0; //set countdown in Minutes
+// Set countdown duration in minutes
+var startTime = 3.0; // 3 minutes
 
-var doneClass = "done"; //optional styling when timer is done
+// Optional class for styling when timer is done
+var doneClass = "done"; 
+
 function startTimer(duration, display) {
-  var timer = duration,
-    minutes,
-    seconds;
-  var intervalLoop = setInterval(function () {
-    minutes = parseInt(timer / 60, 10);
-    seconds = parseInt(timer % 60, 10);
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
-    for (var i = 0; i < display.length; i++) {
-      display[i].textContent = minutes + ":" + seconds;
-    }
-    if (--timer < 0) {
-      for (var i = 0; i < display.length; i++) {
-        display[i].classList.add(doneClass);
-        display[i].textContent = "DONE";
-      }
-      clearInterval(intervalLoop);
-    }
-  }, 1000);
+    var timer = duration, minutes, seconds;
+    var intervalLoop = setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        // Update all display elements
+        for (var i = 0; i < display.length; i++) {
+            display[i].textContent = minutes + ":" + seconds;
+        }
+
+        // Check if timer has finished
+        if (--timer < 0) {
+            for (var i = 0; i < display.length; i++) {
+                display[i].classList.add(doneClass);
+                display[i].textContent = "DONE";
+            }
+            clearInterval(intervalLoop);
+        }
+    }, 1000);
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    var display = [document.getElementById('timer')]; // Select timer display
+    var duration = startTime * 60; // Convert minutes to seconds
+    startTimer(duration, display);
+});
+
 
 $(document).ready(function () {
   var tempCssClass;
