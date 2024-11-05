@@ -1449,6 +1449,10 @@ button {
   text-transform: uppercase;
 }
 
+#msg13 {
+  text-align: center;
+}
+
 #userBlockCountry,
 #userBlock3,
 #userBlockage,
