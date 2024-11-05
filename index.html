@@ -802,21 +802,23 @@
     
       // Function to simulate typing effect for the message
       function typeMessage(elementId, message, delay) {
-        const element = document.getElementById(elementId);
-        if (!element) return;
-        
-        element.textContent = '';
-        let index = 0;
-    
-        const typingInterval = setInterval(() => {
-          if (index < message.length) {
+    const element = document.getElementById(elementId);
+    if (!element) {
+        console.error(`Element with ID ${elementId} not found.`);
+        return;
+    }
+    element.textContent = '';
+    let index = 0;
+    const typingInterval = setInterval(() => {
+        if (index < message.length) {
             element.textContent += message.charAt(index);
             index++;
-          } else {
+        } else {
             clearInterval(typingInterval);
-          }
-        }, delay);
-      }
+        }
+    }, delay);
+}
+
     
       // Event listeners for each response option
       document.addEventListener('DOMContentLoaded', () => {
@@ -889,7 +891,13 @@
       });
     
     function showCongratulationsMessage() {
-      console.log("Showing congratulations message");
+      const element = document.getElementById('congratulationsMsg'); // Example ID
+if (element) {
+    element.textContent = 'Congratulations!';
+} else {
+    console.error('Element not found for congratulations message');
+}
+
       // Show congratulations message
       setTimeout(() => {
         document.getElementById('msg13')?.classList.remove('hidden');
