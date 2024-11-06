@@ -1233,6 +1233,7 @@ input {
   padding: 10px 20px;
   margin-bottom: 10px;
   width: 100%;
+  outline: none;
 }
 #zipcodeInputContainer button {
   padding: 10px 20px !important;
@@ -1505,8 +1506,8 @@ button {
     max-width: 340px;
   }
   .main-heading {
-    font-size: 25px;
-    line-height: 34px;
+    font-size: 20px;
+    line-height: 25px;
     font-weight: 700;
     text-align: center;
   }
