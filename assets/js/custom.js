@@ -22,10 +22,10 @@ loadRingbaScript();
 // Global object to store all selected values
 window.formData = {
   citizenship: "",
-  zipCode: "",
+  zipcode: "",
   age: "",
-  insuranceStatus: "",
-  insuranceCompany: "",
+  is_insured: "", // Changed from insuranceStatus
+  insurance_company: "",
 };
 
 // Function to update the URL with all selected values
@@ -37,11 +37,8 @@ function updateUrlWithAllValues() {
 
   // Add all non-empty values to URL
   Object.entries(window.formData).forEach(([key, value]) => {
-    // Replace "No" with "unknown" for insuranceStatus
-    const urlValue =
-      key === "insuranceStatus" && value === "No" ? "unknown" : value;
-    if (urlValue) {
-      url.searchParams.set(key, urlValue);
+    if (value) {
+      url.searchParams.set(key, value);
     }
   });
 
@@ -88,10 +85,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
   // ZIP Code input
-  document.getElementById("zipCodeSubmit")?.addEventListener("click", () => {
-    const zipCode = document.getElementById("zipCodeInput")?.value;
-    if (zipCode) {
-      updateFormValue("zipCode", zipCode);
+  document.getElementById("zipcodeSubmit")?.addEventListener("click", () => {
+    const zipcode = document.getElementById("zipcodeInput")?.value;
+    if (zipcode) {
+      updateFormValue("zipcode", zipcode);
     }
   });
 
@@ -107,7 +104,18 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".finishquiz").forEach((button) => {
     button.addEventListener("click", () => {
       const response = button.getAttribute("data-form-value");
-      updateFormValue("insuranceStatus", response);
+
+      // Determine the parameter value based on the button clicked
+      let paramValue;
+      if (response === "Yes") {
+        paramValue = "OTHERS";
+      } else if (response === "No") {
+        paramValue = "UNKNOWN";
+      } else {
+        paramValue = response;
+      }
+
+      updateFormValue("is_insured", paramValue);
 
       // Update button states
       document.querySelectorAll(".finishquiz").forEach((btn) => {
@@ -125,9 +133,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Insurance company selection
   document.getElementById("countrySelect")?.addEventListener("change", () => {
-    const insuranceCompany = document.getElementById("countrySelect").value;
-    if (insuranceCompany) {
-      updateFormValue("insuranceCompany", insuranceCompany);
+    const insurance_company = document.getElementById("countrySelect").value;
+    if (insurance_company) {
+      updateFormValue("insurance_company", insurance_company);
 
       // Now update the URL with all collected data
       updateUrlWithAllValues();
@@ -135,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Display the selected insurance company
       const msgUserCountry = document.getElementById("msgUserCountry");
       if (msgUserCountry) {
-        msgUserCountry.textContent = `You Selected: ${insuranceCompany}`;
+        msgUserCountry.textContent = `You Selected: ${insurance_company}`;
         msgUserCountry.classList.remove("hidden");
       }
       document.getElementById("userBlockCountry")?.classList.remove("hidden");
@@ -226,7 +234,7 @@ $(document).ready(function () {
   var buttonValue;
   var currentStep;
 
-  $("button.chat-button, #zipCodeSubmit, #countrySelectSubmit, #ageSubmit").on(
+  $("button.chat-button, #zipcodeSubmit, #countrySelectSubmit, #ageSubmit").on(
     "click",
     function () {
       currentStep = $(this).attr("data-form-step");
@@ -234,7 +242,7 @@ $(document).ready(function () {
 
       // Step for US citizenship question
       if (currentStep == "citizenship") {
-        $("#agentBlockZipCode .agent-chat").prepend(typingEffect());
+        $("#agentBlockzipcode .agent-chat").prepend(typingEffect());
         $("#citizenshipButtons").addClass("hidden");
         $("#userBlockCitizenship").removeClass("hidden");
 
@@ -246,15 +254,15 @@ $(document).ready(function () {
 
         scrollToBottom();
         setTimeout(function () {
-          $("#agentBlockZipCode").removeClass("hidden");
+          $("#agentBlockzipcode").removeClass("hidden");
           scrollToBottom();
           setTimeout(function () {
             $(".temp-typing").remove();
-            $("#msgZipCode").removeClass("hidden").after(typingEffect());
+            $("#msgzipcode").removeClass("hidden").after(typingEffect());
             scrollToBottom();
             setTimeout(function () {
               $(".temp-typing").remove();
-              $("#zipCodeInputContainer").removeClass("hidden");
+              $("#zipcodeInputContainer").removeClass("hidden");
               scrollToBottom();
             }, 750);
           }, 2250);
@@ -262,12 +270,12 @@ $(document).ready(function () {
       }
 
       // Step for zip code input
-      if (currentStep == "zipCode") {
-        var zipCode = $("#zipCodeInput").val();
-        if (/^\d{5}$/.test(zipCode)) {
-          $("#zipCodeInputContainer").addClass("hidden");
-          $("#userBlockZipCode").removeClass("hidden");
-          $("#msgUserZipCode").text(zipCode).removeClass("hidden");
+      if (currentStep == "zipcode") {
+        var zipcode = $("#zipcodeInput").val();
+        if (/^\d{5}$/.test(zipcode)) {
+          $("#zipcodeInputContainer").addClass("hidden");
+          $("#userBlockzipcode").removeClass("hidden");
+          $("#msgUserzipcode").text(zipcode).removeClass("hidden");
 
           scrollToBottom();
           setTimeout(function () {
@@ -570,9 +578,9 @@ document.querySelectorAll(".finishquiz").forEach((button) => {
 
 // Insurance company selection
 document.getElementById("countrySelect")?.addEventListener("change", () => {
-  const insuranceCompany = document.getElementById("countrySelect").value;
-  if (insuranceCompany) {
-    updateFormValue("insuranceCompany", insuranceCompany);
+  const insurance_company = document.getElementById("countrySelect").value;
+  if (insurance_company) {
+    updateFormValue("insurance_company", insurance_company);
 
     // Update the URL with all collected data
     updateUrlWithAllValues();
@@ -580,7 +588,7 @@ document.getElementById("countrySelect")?.addEventListener("change", () => {
     // Display the selected insurance company
     const msgUserCountry = document.getElementById("msgUserCountry");
     if (msgUserCountry) {
-      msgUserCountry.textContent = `You Selected: ${insuranceCompany}`;
+      msgUserCountry.textContent = `You Selected: ${insurance_company}`;
       msgUserCountry.classList.remove("hidden");
     }
     document.getElementById("userBlockCountry")?.classList.remove("hidden");
@@ -595,6 +603,9 @@ function showCongratulationsMessage() {
   // Show congratulations message
   setTimeout(() => {
     document.getElementById("msg13")?.classList.remove("hidden");
+    typeMessage("congratulationsMsg", "Congratulations, You Qualify!! ", 100);
+
+    document.getElementById("msg14")?.classList.remove("hidden");
     typeMessage("congratulationsMsg", "Congratulations, You Qualify!! ", 100);
 
     // Load Ringba script when congratulations message is shown

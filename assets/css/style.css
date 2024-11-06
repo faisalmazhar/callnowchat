@@ -1227,14 +1227,14 @@ video {
 input {
   width: 100%;
 }
-#zipCodeInput,
+#zipcodeInput,
 #ageInput,
 #countrySelect {
   padding: 10px 20px;
   margin-bottom: 10px;
   width: 100%;
 }
-#zipCodeInputContainer button {
+#zipcodeInputContainer button {
   padding: 10px 20px !important;
 }
 #countrySelectContainer button {
@@ -1442,20 +1442,14 @@ button {
 }
 
 .success-msg {
-  color: #077900;
-  font-size: 24px;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-#msg13 {
-  text-align: center;
+  color: #000;
+  font-size: 16px;
 }
 
 #userBlockCountry,
 #userBlock3,
 #userBlockage,
-#userBlockZipCode,
+#userBlockzipcode,
 #userBlockCitizenship {
   max-width: 392px;
 }
