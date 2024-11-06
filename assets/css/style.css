@@ -1435,11 +1435,10 @@ button {
 }
 
 .main-heading {
-  line-height: 1.2;
-  font-size: 41px;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
   font-weight: 700;
   text-align: center;
-  color: #000;
 }
 
 .success-msg {

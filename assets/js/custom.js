@@ -1,244 +1,205 @@
-
 // Function to load the Ringba script and update the phone number
 function loadRingbaScript() {
- console.log("Attempting to load Ringba script...");
- const script = document.createElement('script');
- script.src = "//b-js.ringba.com/CAf48475b102d441f384fa42a37d53e56a";
- script.async = true;
+  console.log("Attempting to load Ringba script...");
+  const script = document.createElement("script");
+  script.src = "//b-js.ringba.com/CAf48475b102d441f384fa42a37d53e56a";
+  script.async = true;
 
- script.onload = function() {
-   console.log("Ringba script loaded successfully");
-   
-   // // Check if Retreaver is defined
-   // if (typeof Retreaver === 'undefined') {
-   //   console.error("Retreaver is not defined. The Ringba script might not have loaded correctly.");
-   //   return;
-   // }
+  script.onload = function () {
+    console.log("Ringba script loaded successfully");
+  };
 
-  // console.log("Configuring Ringba campaign...");
-   // const campaign = new Retreaver.Campaign({
-   //   campaign_key: "3616ae6a8b1517936b02a4167c5a4d1d", // Ensure this is your correct campaign key
-   // });
+  script.onerror = function () {
+    console.error("Failed to load Ringba script");
+  };
 
-   // console.log("Requesting phone number...");
-   // campaign.request_number(function (number) {
-   //   if (number) {
-   //     console.log("Received phone number:", number.get("number"));
-   //     var link =
-   //       '<a href="tel:' +
-   //       number.get("number") +
-   //       '" class="chat-button text-white font-bold bg-blue-500 rounded-lg py-3 px-8 ttc-button fephonecallclick external-dni nv-btn api-btn">' +
-   //       number.get("formatted_number") +
-   //       "</a>";
-       
-   //     const phoneNumberElement = document.getElementById("phone-number");
-   //     if (phoneNumberElement) {
-   //       phoneNumberElement.innerHTML = link;
-   //       console.log("Phone number updated in HTML");
-   //     } else {
-   //       console.error("Element with id 'phone-number' not found");
-   //     }
-
-   //     // You can add additional logic here to update tags or perform other actions
-   //     number.replace_tags({
-   //       // Add any tags you want to send to Ringba
-   //     });
-   //   } else {
-   //     console.error("Failed to receive a phone number from Ringba");
-   //   }
-   // });
- };
-
- script.onerror = function() {
-   console.error("Failed to load Ringba script");
- };
-
- document.body.appendChild(script);
+  document.body.appendChild(script);
 }
 
 // Call the function to load Ringba
 loadRingbaScript();
 
- // Global object to store all selected values
- window.formData = {
-   citizenship: '',
-   zipCode: '',
-   age: '',
-   insuranceStatus: '',
-   insuranceCompany: ''
- };
+// Global object to store all selected values
+window.formData = {
+  citizenship: "",
+  zipCode: "",
+  age: "",
+  insuranceStatus: "",
+  insuranceCompany: "",
+};
 
- // Function to update the URL with all selected values
- function updateUrlWithAllValues() {
-   const url = new URL(window.location);
-   
-   // Clear existing parameters
-   url.search = '';
+// Function to update the URL with all selected values
+function updateUrlWithAllValues() {
+  const url = new URL(window.location);
 
-   // Add all non-empty values to URL
-   Object.entries(window.formData).forEach(([key, value]) => {
-     // Replace "No" with "unknown" for insuranceStatus
-     const urlValue = (key === 'insuranceStatus' && value === 'No') ? 'unknown' : value;
-     if (urlValue) {
-       url.searchParams.set(key, urlValue);
-     }
-   });
+  // Clear existing parameters
+  url.search = "";
 
-   // Update URL
-   window.history.replaceState({}, '', url);
+  // Add all non-empty values to URL
+  Object.entries(window.formData).forEach(([key, value]) => {
+    // Replace "No" with "unknown" for insuranceStatus
+    const urlValue =
+      key === "insuranceStatus" && value === "No" ? "unknown" : value;
+    if (urlValue) {
+      url.searchParams.set(key, urlValue);
+    }
+  });
 
-   // Log for debugging
-   console.log('Updated URL with form data:', window.formData);
- }
+  // Update URL
+  window.history.replaceState({}, "", url);
 
- // Function to update a specific form value
- function updateFormValue(key, value) {
-   window.formData[key] = value;
- }
-
- // Function to simulate typing effect for the message
- function typeMessage(elementId, message, delay) {
-   const element = document.getElementById(elementId);
-   if (!element) return;
-   
-   element.textContent = '';
-   let index = 0;
-
-   const typingInterval = setInterval(() => {
-     if (index < message.length) {
-       element.textContent += message.charAt(index);
-       index++;
-     } else {
-       clearInterval(typingInterval);
-     }
-   }, delay);
- }
-
- // Event listeners for each response option
- document.addEventListener('DOMContentLoaded', () => {
-   // Citizenship buttons
-   document.querySelectorAll('#citizenshipButtons .chat-button').forEach(button => {
-     button.addEventListener('click', () => {
-       const response = button.getAttribute('data-form-value');
-       updateFormValue('citizenship', response);
-     });
-   });
-
-   // ZIP Code input
-   document.getElementById('zipCodeSubmit')?.addEventListener('click', () => {
-     const zipCode = document.getElementById('zipCodeInput')?.value;
-     if (zipCode) {
-       updateFormValue('zipCode', zipCode);
-     }
-   });
-
-   // Age input
-   document.getElementById('ageSubmit')?.addEventListener('click', () => {
-     const age = document.getElementById('ageInput')?.value;
-     if (age) {
-       updateFormValue('age', age);
-     }
-   });
-
-   // Insurance status buttons (including "No" button)
-   document.querySelectorAll('.finishquiz').forEach(button => {
-     button.addEventListener('click', () => {
-       const response = button.getAttribute('data-form-value');
-       updateFormValue('insuranceStatus', response);
-       
-       // Update button states
-       document.querySelectorAll('.finishquiz').forEach(btn => {
-         btn.setAttribute('data-selected', 'false');
-       });
-       button.setAttribute('data-selected', 'true');
-
-       // If "No" is clicked, update URL and show values
-       if (response === 'No') {
-         updateUrlWithAllValues();
-         showCongratulationsMessage();
-       }
-     });
-   });
-
-   // Insurance company selection
-   document.getElementById('countrySelect')?.addEventListener('change', () => {
-     const insuranceCompany = document.getElementById('countrySelect').value;
-     if (insuranceCompany) {
-       updateFormValue('insuranceCompany', insuranceCompany);
-       
-       // Now update the URL with all collected data
-       updateUrlWithAllValues();
-
-       // Display the selected insurance company
-       const msgUserCountry = document.getElementById('msgUserCountry');
-       if (msgUserCountry) {
-         msgUserCountry.textContent = `You Selected: ${insuranceCompany}`;
-         msgUserCountry.classList.remove('hidden');
-       }
-       document.getElementById('userBlockCountry')?.classList.remove('hidden');
-
-       showCongratulationsMessage();
-     } else {
-       alert("Please select an insurance company.");
-     }
-   });
- });
-
-function showCongratulationsMessage() {
- // Show congratulations message
- setTimeout(() => {
-   document.getElementById('msg13')?.classList.remove('hidden');
-   typeMessage('congratulationsMsg', 'Congratulations, You Qualify!! ', 100);
-   
-   // Load Ringba script when congratulations message is shown
-   loadRingbaScript();
- }, 2000);
-
- document.getElementById('agentBlock4')?.classList.remove('hidden');
- document.getElementById('countrySelectContainer')?.classList.add('hidden');
+  // Log for debugging
+  console.log("Updated URL with form data:", window.formData);
 }
 
+// Function to update a specific form value
+function updateFormValue(key, value) {
+  window.formData[key] = value;
+}
 
+// Function to simulate typing effect for the message
+function typeMessage(elementId, message, delay) {
+  const element = document.getElementById(elementId);
+  if (!element) return;
 
+  element.textContent = "";
+  let index = 0;
 
+  const typingInterval = setInterval(() => {
+    if (index < message.length) {
+      element.textContent += message.charAt(index);
+      index++;
+    } else {
+      clearInterval(typingInterval);
+    }
+  }, delay);
+}
+
+// Event listeners for each response option
+document.addEventListener("DOMContentLoaded", () => {
+  // Citizenship buttons
+  document
+    .querySelectorAll("#citizenshipButtons .chat-button")
+    .forEach((button) => {
+      button.addEventListener("click", () => {
+        const response = button.getAttribute("data-form-value");
+        updateFormValue("citizenship", response);
+      });
+    });
+
+  // ZIP Code input
+  document.getElementById("zipCodeSubmit")?.addEventListener("click", () => {
+    const zipCode = document.getElementById("zipCodeInput")?.value;
+    if (zipCode) {
+      updateFormValue("zipCode", zipCode);
+    }
+  });
+
+  // Age input
+  document.getElementById("ageSubmit")?.addEventListener("click", () => {
+    const age = document.getElementById("ageInput")?.value;
+    if (age) {
+      updateFormValue("age", age);
+    }
+  });
+
+  // Insurance status buttons (including "No" button)
+  document.querySelectorAll(".finishquiz").forEach((button) => {
+    button.addEventListener("click", () => {
+      const response = button.getAttribute("data-form-value");
+      updateFormValue("insuranceStatus", response);
+
+      // Update button states
+      document.querySelectorAll(".finishquiz").forEach((btn) => {
+        btn.setAttribute("data-selected", "false");
+      });
+      button.setAttribute("data-selected", "true");
+
+      // If "No" is clicked, update URL and show values
+      if (response === "No") {
+        updateUrlWithAllValues();
+        showCongratulationsMessage();
+      }
+    });
+  });
+
+  // Insurance company selection
+  document.getElementById("countrySelect")?.addEventListener("change", () => {
+    const insuranceCompany = document.getElementById("countrySelect").value;
+    if (insuranceCompany) {
+      updateFormValue("insuranceCompany", insuranceCompany);
+
+      // Now update the URL with all collected data
+      updateUrlWithAllValues();
+
+      // Display the selected insurance company
+      const msgUserCountry = document.getElementById("msgUserCountry");
+      if (msgUserCountry) {
+        msgUserCountry.textContent = `You Selected: ${insuranceCompany}`;
+        msgUserCountry.classList.remove("hidden");
+      }
+      document.getElementById("userBlockCountry")?.classList.remove("hidden");
+
+      showCongratulationsMessage();
+      scrollToBottom();
+    } else {
+      alert("Please select an insurance company.");
+    }
+  });
+});
+
+function showCongratulationsMessage() {
+  // Show congratulations message
+  setTimeout(() => {
+    document.getElementById("msg13")?.classList.remove("hidden");
+    typeMessage("congratulationsMsg", "Congratulations, You Qualify!! ", 100);
+
+    // Load Ringba script when congratulations message is shown
+    loadRingbaScript();
+  }, 2000);
+
+  document.getElementById("agentBlock4")?.classList.remove("hidden");
+  document.getElementById("countrySelectContainer")?.classList.add("hidden");
+}
 
 // Set countdown duration in minutes
 var startTime = 3.0; // 3 minutes
 
 // Optional class for styling when timer is done
-var doneClass = "done"; 
+var doneClass = "done";
 
 function startTimer(duration, display) {
-    var timer = duration, minutes, seconds;
-    var intervalLoop = setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
+  var timer = duration,
+    minutes,
+    seconds;
+  var intervalLoop = setInterval(function () {
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
 
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        // Update all display elements
-        for (var i = 0; i < display.length; i++) {
-            display[i].textContent = minutes + ":" + seconds;
-        }
+    // Update all display elements
+    for (var i = 0; i < display.length; i++) {
+      display[i].textContent = minutes + ":" + seconds;
+    }
 
-        // Check if timer has finished
-        if (--timer < 0) {
-            for (var i = 0; i < display.length; i++) {
-                display[i].classList.add(doneClass);
-                display[i].textContent = "DONE";
-            }
-            clearInterval(intervalLoop);
-        }
-    }, 1000);
+    // Check if timer has finished
+    if (--timer < 0) {
+      for (var i = 0; i < display.length; i++) {
+        display[i].classList.add(doneClass);
+        display[i].textContent = "DONE";
+      }
+      clearInterval(intervalLoop);
+    }
+  }, 1000);
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    var display = [document.getElementById('timer')]; // Select timer display
-    var duration = startTime * 60; // Convert minutes to seconds
-    startTimer(duration, display);
+document.addEventListener("DOMContentLoaded", function () {
+  var display = [document.getElementById("timer")]; // Select timer display
+  var duration = startTime * 60; // Convert minutes to seconds
+  startTimer(duration, display);
 });
-
 
 $(document).ready(function () {
   var tempCssClass;
@@ -586,3 +547,68 @@ var triggerOfferwall = function () {
 };
 
 // Values show in URL and insurance selected field funcationalty
+
+// Insurance status buttons (including "No" button)
+document.querySelectorAll(".finishquiz").forEach((button) => {
+  button.addEventListener("click", () => {
+    const response = button.getAttribute("data-form-value");
+    updateFormValue("insuranceStatus", response);
+
+    // Update button states
+    document.querySelectorAll(".finishquiz").forEach((btn) => {
+      btn.setAttribute("data-selected", "false");
+    });
+    button.setAttribute("data-selected", "true");
+
+    // If "No" is clicked, update URL and show values
+    if (response === "No") {
+      updateUrlWithAllValues();
+      showCongratulationsMessage();
+    }
+  });
+});
+
+// Insurance company selection
+document.getElementById("countrySelect")?.addEventListener("change", () => {
+  const insuranceCompany = document.getElementById("countrySelect").value;
+  if (insuranceCompany) {
+    updateFormValue("insuranceCompany", insuranceCompany);
+
+    // Update the URL with all collected data
+    updateUrlWithAllValues();
+
+    // Display the selected insurance company
+    const msgUserCountry = document.getElementById("msgUserCountry");
+    if (msgUserCountry) {
+      msgUserCountry.textContent = `You Selected: ${insuranceCompany}`;
+      msgUserCountry.classList.remove("hidden");
+    }
+    document.getElementById("userBlockCountry")?.classList.remove("hidden");
+
+    showCongratulationsMessage();
+  } else {
+    alert("Please select an insurance company.");
+  }
+});
+
+function showCongratulationsMessage() {
+  // Show congratulations message
+  setTimeout(() => {
+    document.getElementById("msg13")?.classList.remove("hidden");
+    typeMessage("congratulationsMsg", "Congratulations, You Qualify!! ", 100);
+
+    // Load Ringba script when congratulations message is shown
+    loadRingbaScript();
+
+    // Scroll to bottom after showing the message
+    scrollToBottom();
+  }, 2000);
+
+  document.getElementById("agentBlock4")?.classList.remove("hidden");
+  document.getElementById("countrySelectContainer")?.classList.add("hidden");
+}
+
+// Scroll to bottom function
+function scrollToBottom() {
+  document.getElementById("msg13")?.scrollIntoView({ behavior: "smooth" });
+}
