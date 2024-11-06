@@ -37,8 +37,11 @@ function updateUrlWithAllValues() {
 
   // Add all non-empty values to URL
   Object.entries(window.formData).forEach(([key, value]) => {
-    if (value) {
-      url.searchParams.set(key, value);
+    // Replace "No" with "unknown" for insuranceStatus
+    const urlValue =
+      key === "insuranceStatus" && value === "No" ? "UNKNOWN" : value;
+    if (urlValue) {
+      url.searchParams.set(key, urlValue);
     }
   });
 
@@ -80,7 +83,9 @@ document.addEventListener("DOMContentLoaded", () => {
     .forEach((button) => {
       button.addEventListener("click", () => {
         const response = button.getAttribute("data-form-value");
-        updateFormValue("citizenship", response);
+        // Convert response to lowercase for citizenship
+        const lowerCaseResponse = response.toLowerCase();
+        updateFormValue("citizenship", lowerCaseResponse);
       });
     });
 
@@ -108,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Determine the parameter value based on the button clicked
       let paramValue;
       if (response === "Yes") {
-        paramValue = "OTHERS";
+        paramValue = "OTHER";
       } else if (response === "No") {
         paramValue = "UNKNOWN";
       } else {
@@ -347,57 +352,6 @@ $(document).ready(function () {
         }, 1250);
       }
 
-      // Step for age range question
-      if (currentStep == 2) {
-        $("#agentBlock2").removeClass("hidden");
-        if (!$("#msg7").is(":visible")) {
-          // Check if the typing effect has already been shown
-          $("#agentBlock2 .agent-chat").prepend(typingEffect());
-          scrollToBottom();
-
-          setTimeout(function () {
-            $(".temp-typing").remove();
-            $("#msg7").removeClass("hidden").after(typingEffect());
-            scrollToBottom();
-
-            setTimeout(function () {
-              $(".temp-typing").remove();
-              $("#msg8").removeClass("hidden");
-              scrollToBottom();
-            }, 750);
-          }, 1500);
-        }
-      }
-
-      // User response for age range
-      if (currentStep == 2) {
-        $("#userBlock2").removeClass("hidden");
-        $("#msg9" + buttonValue.toLowerCase())
-          .removeClass("hidden")
-          .text(buttonValue);
-        scrollToBottom();
-
-        // Proceed to next step (insurance question)
-        setTimeout(function () {
-          currentStep = 3;
-          $("#agentBlock3").removeClass("hidden");
-          $("#agentBlock3 .agent-chat").prepend(typingEffect());
-          scrollToBottom();
-
-          setTimeout(function () {
-            $(".temp-typing").remove();
-            $("#msg10").removeClass("hidden").after(typingEffect());
-            scrollToBottom();
-
-            setTimeout(function () {
-              $(".temp-typing").remove();
-              $("#msg11").removeClass("hidden");
-              scrollToBottom();
-            }, 750);
-          }, 1500);
-        }, 1500);
-      }
-
       // Step for insurance question
       if (currentStep == 3) {
         $("#agentBlock4 .agent-chat").prepend(typingEffect());
@@ -461,12 +415,12 @@ $(document).ready(function () {
         scrollToBottom();
         setTimeout(function () {
           $(".temp-typing").remove();
-          $("#msg13").removeClass("hidden").after(typingEffect());
-          scrollToBottom();
+          // $("#msg13").removeClass("hidden").after(typingEffect());
+          // scrollToBottom();
           setTimeout(function () {
-            $(".temp-typing").remove();
-            $("#msg14").removeClass("hidden").after(typingEffect());
-            scrollToBottom();
+            // $(".temp-typing").remove();
+            // $("#msg14").removeClass("hidden").after(typingEffect());
+            // scrollToBottom();
             setTimeout(function () {
               $(".temp-typing").remove();
               $("#msg16").removeClass("hidden").after(typingEffect());
